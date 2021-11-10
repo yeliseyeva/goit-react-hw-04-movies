@@ -23,4 +23,9 @@ export const getMovieDetails = async (movieId) => {
     return response.data;
 }
 
+export const getMoviesByQuery = async (query) => {
+    const response = await axios.get(`search/movie?api_key=${API_KEY}&query==${query}`);
+    return response.data.results;
+}
+
 export default getTrandingMovies;
