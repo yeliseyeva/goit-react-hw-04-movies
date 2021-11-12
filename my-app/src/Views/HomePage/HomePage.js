@@ -8,7 +8,7 @@ const HomePage = () => {
     useEffect(() => {
         getTrandingMovies().then(films => setMovies(films.results))
         
-    })
+    }, [])
     return (
         <>
             <h1>HomePage</h1>
