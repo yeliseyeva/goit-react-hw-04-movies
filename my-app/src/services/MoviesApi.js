@@ -28,4 +28,9 @@ export const getMoviesByQuery = async (query) => {
     return response.data.results;
 }
 
+export const getActors = async (movieId) => {
+    const response = await axios.get(`movie/${movieId}/credits?api_key=${API_KEY}`);
+    return response.data.results;
+}
+
 export default getTrandingMovies;
