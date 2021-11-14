@@ -27,19 +27,17 @@ const MoviesPage = () => {
 
     }
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     const locationValue = location.search.split("=")[1]
+        const locationValue = location.search.split("=")[1]
 
-    //     console.log();
+        console.log();
 
-    //     if (location.search !== '') {
-    //         getMoviesByQuery(locationValue).then(res => setMovies(res));
-    //     }
+        if (location.search !== '') {
+            getMoviesByQuery(locationValue).then(res => setMovies(res));
+        }
 
-    //     setQuery(locationValue)
-
-    // }, [location])
+    }, [location])
 
     return (
         <div>

@@ -14,10 +14,7 @@ const MoviesList = ({ movies }) => {
           return (
             <li key={movie.id} className={s.movieItem}>
               <Link
-                to={{
-                  pathname: `/movies/${movie.id}`,
-                  state: { from: location.pathname !== '/' ? location.pathname + location.search : location.pathname},
-                }}
+                to={`/movies/${movie.id}`} state={{ from: location }}
               >
                 <img src={`${BASE_URL}${movie.poster_path}`} alt="" width="200" />
               </Link>
@@ -29,15 +26,3 @@ const MoviesList = ({ movies }) => {
   };
 
 export default MoviesList;
-
-// to={{
-//     pathname: `/movies/${movie.id}`,
-//     state: { from: location.pathname !== '/' ? location.pathname + location.search : location.pathname},
-//   }}
-
-// to={`/movies/${movie.id}`}
-
-// {{
-//   pathname: `/movies/${movie.id}`,
-//   state: { from: location },
-// }}
