@@ -30,7 +30,13 @@ export const getMoviesByQuery = async (query) => {
 
 export const getActors = async (movieId) => {
     const response = await axios.get(`movie/${movieId}/credits?api_key=${API_KEY}`);
+    return response.data.cast;
+}
+
+export const getReviews = async (movieId) => {
+    const response = await axios.get(`movie/${movieId}/reviews?api_key=${API_KEY}`);
     return response.data.results;
 }
+
 
 export default getTrandingMovies;

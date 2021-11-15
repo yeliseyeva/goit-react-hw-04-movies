@@ -1,8 +1,15 @@
-import { useState, useEffect } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { getMovieDetails } from "../../services/MoviesApi";
 import { useLocation, useNavigate, useParams, Routes, Route } from "react-router-dom";
-import Cast from "../../Components/AddInfo/Cast/Cast";
 import AddInfo from "../../Components/AddInfo/AddInfo";
+
+const Cast = lazy( () => 
+  import( "../../Components/AddInfo/Cast/Cast" /* webpackChunkName: "Cast" */)
+)
+
+const Reviews = lazy( () => 
+  import( "../../Components/AddInfo/Reviews/Reviews" /* webpackChunkName: "Reviews" */)
+)
 
 const BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -22,10 +29,9 @@ const MovieDetailsPage = () => {
     if (film === null) {
         return <h1>Данных по фильму нет</h1>
     }
-    console.log(film);
 
     const handleGoBack = () => {
-        navigate(location?.state?.from);
+        navigate(location?.state?.from ?? "/");
     }
 
     return (
@@ -40,11 +46,15 @@ const MovieDetailsPage = () => {
             <p>{film.overview}</p>
             <h3>Genres</h3>
             <p>{film.genres.map(gen => gen.name).join(', ')}</p>
+
             <AddInfo />
 
-            <Routes>
-                <Route path="cast" element={<Cast/>}/>
-            </Routes>
+            <Suspense fallback={<p>Loading...</p>}>
+                <Routes>
+                    <Route path="cast" element={<Cast/>}/>
+                    <Route path="reviews" element={<Reviews/>}/>
+                </Routes>
+            </Suspense>
 
         </>
 
